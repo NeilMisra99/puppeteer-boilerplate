@@ -85,7 +85,7 @@ app.post("/slides", async (req, res) => {
     const fullHtml = createSlidesHtml(processedSlides);
 
     // Initialize browser
-    const browser = await launch({
+    const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
       headless: true,
     });
