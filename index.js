@@ -1,10 +1,10 @@
-const express = require("express");
-const multer = require("multer");
-const puppeteer = require("puppeteer");
+import express, { json } from "express";
+import multer from "multer";
+import puppeteer from "puppeteer";
 
 const app = express();
 const upload = multer(); // Middleware for parsing form data
-app.use(express.json()); // For parsing application/json
+app.use(json()); // For parsing application/json
 
 // Serve HTML form
 app.get("/", (req, res) => {
@@ -85,9 +85,7 @@ app.post("/slides", async (req, res) => {
     const fullHtml = createSlidesHtml(processedSlides);
 
     // Initialize browser
-    const browser = await puppeteer.launch({
-      executablePath:
-        "https://github.com/Sparticuz/chromium/releases/download/v132.0.0/chromium-v132.0.0-pack.tar",
+    const browser = await launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
       headless: true,
     });
