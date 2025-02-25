@@ -1,10 +1,10 @@
-import express, { json } from "express";
-import multer from "multer";
-import puppeteer from "puppeteer";
+const express = require("express");
+const multer = require("multer");
+const puppeteer = require("puppeteer");
 
 const app = express();
 const upload = multer(); // Middleware for parsing form data
-app.use(json()); // For parsing application/json
+app.use(express.json()); // For parsing application/json
 
 // Serve HTML form
 app.get("/", (req, res) => {
