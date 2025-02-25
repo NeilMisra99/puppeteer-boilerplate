@@ -86,7 +86,6 @@ app.post("/slides", async (req, res) => {
 
     // Initialize browser
     const browser = await puppeteer.launch({
-      executablePath: `/app/.cache/puppeteer/chrome/linux-131.0.6778.204/chrome-linux64/chrome`,
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
