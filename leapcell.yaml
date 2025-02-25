@@ -1,5 +1,51 @@
 runtime: javascript
 startCommand: node index.js
-buildCommand: npm install puppeteer && npm install
+buildCommand: |
+  apt-get update && apt-get install -y libglib2.0-dev
+  apt-get update && apt-get install -y \
+      ca-certificates \
+      fontconfig \
+      gconf-service \
+      libappindicator1 \
+      libasound2 \
+      libatk1.0-0 \
+      libc6 \
+      libcups2 \
+      libdbus-1-3 \
+      libexpat1 \
+      libfontconfig1 \
+      libgcc1 \
+      libgconf-2-4 \
+      libgbm-dev \
+      libgdk-pixbuf2.0-0 \
+      libglib2.0-0 \
+      libgtk-3-0 \
+      libicu-dev \
+      libjpeg-dev \
+      libnspr4 \
+      libnss3 \
+      libpango-1.0-0 \
+      libpangocairo-1.0-0 \
+      libpng-dev \
+      libstdc++6 \
+      libx11-6 \
+      libx11-xcb1 \
+      libxcb1 \
+      libxcomposite1 \
+      libxcursor1 \
+      libxdamage1 \
+      libxext6 \
+      libxfixes3 \
+      libxi6 \
+      libxrandr2 \
+      libxrender1 \
+      libxss1 \
+      libxtst6 \
+      locales \
+      lsb-release \
+      wget \
+      xdg-utils \
+      && rm -rf /var/lib/apt/lists/*
+  npm install puppeteer && npm install
 port: 8080
 memory: 1024mb
