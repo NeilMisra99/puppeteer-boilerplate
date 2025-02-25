@@ -45,7 +45,9 @@ app.post("/screenshot", upload.none(), async (req, res) => {
       <head><title>Screenshot Result</title></head>
       <body>
           <h1>Screenshot of ${url}</h1>
-          <img src="data:image/png;base64,${screenshotBuffer.toString("base64")}" style="max-width:100%;height:auto;">
+          <img src="data:image/png;base64,${screenshotBuffer.toString(
+            "base64"
+          )}" style="max-width:100%;height:auto;">
           <br><a href="/">Back to form</a>
       </body>
       </html>
@@ -84,6 +86,8 @@ app.post("/slides", async (req, res) => {
 
     // Initialize browser
     const browser = await puppeteer.launch({
+      executablePath:
+        "https://github.com/Sparticuz/chromium/releases/download/v132.0.0/chromium-v132.0.0-pack.tar",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
       headless: true,
     });
@@ -116,7 +120,7 @@ app.post("/slides", async (req, res) => {
     // For example, if there are 5 pages, this will be "1,3,5"
     const oddPagesRanges = Array.from(
       { length: Math.ceil(slides.length / 2) },
-      (_, i) => i * 2 + 1,
+      (_, i) => i * 2 + 1
     )
       .filter((pageNum) => pageNum <= slides.length)
       .join(",");
@@ -141,7 +145,7 @@ app.post("/slides", async (req, res) => {
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
       "Content-Disposition",
-      'attachment; filename="ai_slides.pdf"',
+      'attachment; filename="ai_slides.pdf"'
     );
     return res.send(filteredPdf);
   } catch (error) {
@@ -406,7 +410,9 @@ function createSlidesHtml(slides) {
         ${slides
           .map(
             (slide, index) =>
-              `<div class="slide" id="slide-${index + 1}" style="contain: layout size;">${slide}</div>`,
+              `<div class="slide" id="slide-${
+                index + 1
+              }" style="contain: layout size;">${slide}</div>`
           )
           .join("")}
       </body>
@@ -417,5 +423,5 @@ function createSlidesHtml(slides) {
 // Start server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`),
+  console.log(`Server running on http://localhost:${PORT}`)
 );
